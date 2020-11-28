@@ -17,8 +17,8 @@ class Scraper
     pages_urls.each do |pages_url|
       html = open(pages_url)
       doc = Nokogiri::HTML(html)
-      tracks = doc.css('.card>a')
-      tracks.each do |track|
+      tracks_u = doc.css('.card>a')
+      tracks_u.each do |track|
         url = track.attribute('href').value
         tracks_urls << url
       end
@@ -49,14 +49,14 @@ class Scraper
         video_urls << "https://www.youtube.com/watch?v=#{video_url}"
       end
 
-      track_info = {
+      track_hash = {
         title: title,
         artist: artist,
         photo_link: photo_urls[0],
         video_link: video_urls[0]
       }
-      techno_tracks << track_info
+      techno_tracks << track_hash
     end
-    p techno_tracks
+    techno_tracks
   end
 end
