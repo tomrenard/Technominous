@@ -1,5 +1,5 @@
-Event.destroy_all
+Track.destroy_all
 
 scrape = Scraper.new
-tracks = scrape.scrape_track_urls
+tracks = scrape.scrape_urls
 Track.create_from_scraping(tracks)

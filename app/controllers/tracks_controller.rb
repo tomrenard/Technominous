@@ -29,9 +29,9 @@ class TracksController < ApplicationController
     @track = Track.new(track_params)
     # @track.user = current_user
     if @track.save
-      redirect_to @track
+      redirect_to track_path(@track)
     else
-      render 'new'
+      render :new
     end
   end
 
