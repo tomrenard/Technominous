@@ -1,0 +1,11 @@
+<%= simple_form_for @track do |f| %>
+  <%= f.input :title %>
+  <%= f.input :artist %>
+  <%= f.button :submit %>
+<% end %>
+
+
+<%= link_to 'Destroy', @article,
+  method: :delete,
+  data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', tracks_path %>

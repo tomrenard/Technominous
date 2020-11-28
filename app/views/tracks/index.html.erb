@@ -1,0 +1,7 @@
+<% @tracks.each do |track| %>
+  <%= track.title %>
+  <%= track.artist %>
+<% end %>
+
+
+<%= link_to 'Add', new_track_path %>
