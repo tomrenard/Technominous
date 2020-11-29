@@ -1,6 +1,25 @@
 // Import page-specific CSS files here.
 @import "home";
 
+
+.title h1 {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 5vw;
+  font-weight: bold;
+  animation: defil-rtl 20s infinite linear;
+  text-shadow: 1px 1px 2px pink;
+}
+
+@keyframes defil-rtl {
+  0% {
+    transform: translate3d(-20%,0,0);
+  }
+  100% {
+    transform: translate3d(100%,0,0);
+  }
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
@@ -13,6 +32,8 @@
   overflow: hidden;
   display: grid;
   position: relative;
+  justify-items: center;
+  align-items: center;
 }
 
 .item img {
@@ -23,8 +44,9 @@
 
 .item_overlay {
   position: absolute;
+  display: grid;
   top: -50%;
-  transition: 0.4s;
+  transition: 0.3s;
   justify-items: center;
   align-items: center;
 }
@@ -33,12 +55,27 @@
   top: 40%;
 }
 
-.item_overlay button {
+.item:hover {
+  filter: drop-shadow(16px 16px 20px red) invert(75%);
+}
+
+.item_overlay a {
   border: 2px solid white;
   color: white;
   text-transform: uppercase;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 1);
   padding: 5px;
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
+  text-decoration: none;
+}
+
+
+.footer h6 {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5vw;
+  font-weight: lighter;
+  margin: 10px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
 }
