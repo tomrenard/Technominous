@@ -1,9 +1,26 @@
-<% @tracks.each do |track| %>
-  <%= track.title %>
-  <%= track.artist %>
-  <%= track.video_link %>
-  <%= track.photo_link %>
-<% end %>
+<div class="content-wrapper">
 
 
-<%= link_to 'Add', new_track_path %>
+  <div class="overlay">
+    <div class="overlay-inner">
+      <img>
+    </div>
+  </div>
+
+  <section class="gallery">
+    <% @tracks.each do |track| %>
+    <div class="item">
+      <img src="<%= track.photo_link %>" alt="">
+      <div class="item_overlay">
+        <button><%= track.artist %> - <%= track.title %></button>
+      </div>
+    </div>
+    <% end %>
+  </section>
+
+
+  <!-- <iframe width="420" height="315"
+    src="<%##= track.video_link %>">
+  </iframe> -->
+
+</div>

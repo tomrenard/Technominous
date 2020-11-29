@@ -17,17 +17,17 @@ class Scraper
     pages_urls.each do |pages_url|
       html = open(pages_url)
       doc = Nokogiri::HTML(html)
-      tracks_u = doc.css('.card>a')
-      tracks_u.each do |track|
+      tracks = doc.css('.card>a')
+      tracks.each do |track|
         url = track.attribute('href').value
         tracks_urls << url
       end
-      scrape_techno(tracks_urls)
     end
+    scrape_techno(tracks_urls)
   end
 
   def scrape_techno(tracks_urls)
-    techno_tracks = []
+    tracks_list = []
     tracks_urls.each do |tracks_url|
       url = "https://www.discogs.com/#{tracks_url}"
       html = open(url)
@@ -46,17 +46,27 @@ class Scraper
       video_links = doc.css('#youtube_player_wrapper').search('#youtube_player_placeholder')
       video_links.each do |video_link|
         video_url = video_link.attribute('data-video-ids').value.split(',')[0]
-        video_urls << "https://www.youtube.com/watch?v=#{video_url}"
+        video_urls << "https://www.youtube.com/embed/#{video_url}"
       end
 
-      track_hash = {
+      track_info = {
         title: title,
-        artist: artist,
-        photo_link: photo_urls[0],
-        video_link: video_urls[0]
+        artist: artist
       }
-      techno_tracks << track_hash
+
+      if photo_urls[0].nil?
+        track_info[:photo_link] = "https://source.unsplash.com/featured/?club"
+      else
+        track_info[:photo_link] = photo_urls[0]
+      end
+
+      if video_urls[0].nil?
+        track_info[:video_link] = "https://www.youtube.com/watch?v=u-m1qToX8hU&list=PLk9OF3AXEsI4QrO7H_fZWdyN7JK-wr4tV"
+      else
+        track_info[:video_link] = video_urls[0]
+      end
+      tracks_list << track_info
     end
-    techno_tracks
+    p tracks_list
   end
 end

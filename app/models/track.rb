@@ -3,9 +3,8 @@ class Track < ApplicationRecord
   validates :artist, presence: true
 
   def self.create_from_scraping(tracks)
-    tracks.each do |track_hash|
-      p "track_hash=#{track_hash}"
-      Track.create!(track_hash)
+    tracks.each do |track_info|
+      Track.create!(track_info)
     end
   end
 end
